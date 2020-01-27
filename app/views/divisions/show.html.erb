@@ -1,0 +1,69 @@
+<div class="container">
+  <%= link_to 'Edit', edit_division_path(@division) %> |
+  <%= link_to 'Back', divisions_path %>
+
+  <div class="row justify-content-center">
+    <h2><%= @division.name %></h2>
+  </div>
+</div>
+
+<% @Images = @division.galleries.select {|gallery| gallery[:image] != nil} %>
+
+<div class="container">
+  <h2> Images </h2>
+  <div class="row">
+    <% @Images.each do |gallery| %>
+      <div class="col">
+        <%= link_to image_tag(gallery.image_url(:thumb).to_s), gallery.image_url.to_s,
+            data: { lightbox: "roadtrip" } %>
+      </div>
+
+        <% end %>
+  </div>
+
+<% @Videos = @division.galleries.select {|gallery| gallery[:video] != nil} %>
+
+  <h2> Videos </h2>
+  <div class="row">
+    <% @Videos.each do |gallery| %>
+      <div class="col-6">
+        <%= video_tag gallery.video_url.to_s, controls: true, width: "550px" %>
+      </div>
+    <% end %>
+  </div>
+
+  <% @PDFs = @division.galleries.select {|gallery| gallery[:pdf] != nil} %>
+
+    <h2> PDF </h2>
+    <div class="row">
+      <% @PDFs.each do |gallery| %>
+        <div class="col">
+           <%= link_to gallery.pdf.to_s.delete_prefix("/uploads/gallery/pdf/#{gallery.id}/"), gallery.pdf.to_s %>
+           <iframe src= <%= gallery.pdf %> width="250px" height="250px" > </iframe>
+        </div>
+      <% end %>
+    </div>
+
+<h2>Add a gellery:</h2>
+<%= form_with(model: [ @division, @division.galleries.build ], local: true) do |form| %>
+  <p>
+    add an image....
+    <%= form.file_field :image %>
+  </p>
+
+  <p>
+    add a video....
+    <%= form.file_field :video %>
+  </p>
+
+  <p>
+    add a pdf....
+    <%= form.file_field :pdf %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+</div>
