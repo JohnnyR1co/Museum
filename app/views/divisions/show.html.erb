@@ -15,7 +15,7 @@
     <% @Images.each do |gallery| %>
       <div class="col">
         <%= link_to image_tag(gallery.image_url(:thumb).to_s), gallery.image_url.to_s,
-            data: { lightbox: "roadtrip" } %>
+            data: { fslightbox: "gallery1" } %>
       </div>
 
         <% end %>
@@ -27,7 +27,8 @@
   <div class="row">
     <% @Videos.each do |gallery| %>
       <div class="col-6">
-        <%= video_tag gallery.video_url.to_s, controls: true, width: "550px" %>
+        <%= link_to video_tag(gallery.video_url.to_s, controls: true, width: "550px"), gallery.video_url.to_s,
+         data: { fslightbox: "gallery2" } %>
       </div>
     <% end %>
   </div>
