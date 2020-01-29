@@ -17,8 +17,7 @@
         <%= link_to image_tag(gallery.image_url(:thumb).to_s), gallery.image_url.to_s,
             data: { fslightbox: "gallery1" } %>
       </div>
-
-        <% end %>
+    <% end %>
   </div>
 
 <% @Videos = @division.galleries.select {|gallery| gallery[:video] != nil} %>
@@ -35,15 +34,20 @@
 
   <% @PDFs = @division.galleries.select {|gallery| gallery[:pdf] != nil} %>
 
-    <h2> PDF </h2>
-    <div class="row">
-      <% @PDFs.each do |gallery| %>
-        <div class="col">
-           <%= link_to gallery.pdf.to_s.delete_prefix("/uploads/gallery/pdf/#{gallery.id}/"), gallery.pdf.to_s %>
-           <iframe src= <%= gallery.pdf %> width="250px" height="250px" > </iframe>
-        </div>
-      <% end %>
-    </div>
+  <h2> PDF </h2>
+  <div class="row">
+    <% @PDFs.each do |gallery| %>
+      <div class="col">
+        <p>
+          <%= link_to gallery.pdf.to_s.delete_prefix("/uploads/gallery/pdf/#{gallery.id}/"), gallery.pdf.to_s,
+          data: {lity: ""} %>
+        </p>
+        <p>
+          <iframe src= <%= gallery.pdf %> width="250px" height="250px" > </iframe>
+        </p>
+      </div>
+    <% end %>
+  </div>
 
 <h2>Add a gellery:</h2>
 <%= form_with(model: [ @division, @division.galleries.build ], local: true) do |form| %>
