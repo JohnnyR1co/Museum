@@ -2,11 +2,7 @@ class GalleriesController < ApplicationController
   def create
     @division = Division.find(params[:division_id])
     @gallery = @division.galleries.create(gallery_params)
-    if @gallery.save
-      redirect_to division_path(@division)
-    else
-      render 'division/show', notice: "The deck was saved"
-    end
+    redirect_to division_path(@division)
   end
 
   def destroy
