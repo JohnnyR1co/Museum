@@ -39,12 +39,10 @@
     <% @PDFs.each do |gallery| %>
       <div class="col">
         <p>
-          <%= link_to gallery.pdf.to_s.delete_prefix("/uploads/gallery/pdf/#{gallery.id}/"), gallery.pdf.to_s,
+          <%= link_to tag.iframe(src: "#{gallery.pdf}", width: "250px", hight: "250px"), gallery.pdf.to_s,
           data: {lity: ""} %>
         </p>
-        <p>
-          <iframe src= <%= gallery.pdf %> width="250px" height="250px" > </iframe>
-        </p>
+
       </div>
     <% end %>
   </div>
