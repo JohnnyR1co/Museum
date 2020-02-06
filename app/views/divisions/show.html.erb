@@ -10,7 +10,6 @@
 <% @Images = @division.galleries.select {|gallery| gallery[:image] != nil} %>
 
 <div class="container">
-  <h2> Images </h2>
   <div class="row">
     <% @Images.each do |gallery| %>
       <div class="col">
@@ -22,7 +21,6 @@
 
 <% @Videos = @division.galleries.select {|gallery| gallery[:video] != nil} %>
 
-  <h2> Videos </h2>
   <div class="row">
     <% @Videos.each do |gallery| %>
       <div class="col-6">
@@ -34,7 +32,6 @@
 
   <% @PDFs = @division.galleries.select {|gallery| gallery[:pdf] != nil} %>
 
-  <h2> PDF </h2>
   <div class="row">
     <% @PDFs.each do |gallery| %>
       <div class="col">
@@ -47,26 +44,27 @@
     <% end %>
   </div>
 
-<h2>Add a gellery:</h2>
-<%= form_with(model: [ @division, @division.galleries.build ], local: true) do |form| %>
-  <p>
-    add an image....
-    <%= form.file_field :image %>
-  </p>
+<% if current_user.admin? %>
+  <h2>Add a gellery:</h2>
+  <%= form_with(model: [ @division, @division.galleries.build ], local: true) do |form| %>
+    <p>
+      add an image....
+      <%= form.file_field :image %>
+    </p>
 
-  <p>
-    add a video....
-    <%= form.file_field :video %>
-  </p>
+    <p>
+      add a video....
+      <%= form.file_field :video %>
+    </p>
 
-  <p>
-    add a pdf....
-    <%= form.file_field :pdf %>
-  </p>
+    <p>
+      add a pdf....
+      <%= form.file_field :pdf %>
+    </p>
 
-  <p>
-    <%= form.submit %>
-  </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
 <% end %>
-
 </div>

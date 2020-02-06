@@ -1,4 +1,5 @@
 class DivisionsController < ApplicationController
+    before_action :authenticate_user!
   def index
     @divisions = Division.all
   end
