@@ -1,6 +1,6 @@
 <div class="container">
-  <%= link_to 'Edit', edit_division_path(@division) %> |
-  <%= link_to 'Back', divisions_path %>
+  <%= link_to 'Редактировать', edit_division_path(@division) %> |
+  <%= link_to 'Назад', divisions_path %>
 
   <div class="row justify-content-center">
     <h2><%= @division.name %></h2>
@@ -48,22 +48,22 @@
   <h2>Add a gellery:</h2>
   <%= form_with(model: [ @division, @division.galleries.build ], local: true) do |form| %>
     <p>
-      add an image....
+      Дабовить фотографию....
       <%= form.file_field :image %>
     </p>
 
     <p>
-      add a video....
+      Добавить видео....
       <%= form.file_field :video %>
     </p>
 
     <p>
-      add a pdf....
+      Добавить pdf файл....
       <%= form.file_field :pdf %>
     </p>
 
     <p>
-      <%= form.submit %>
+      <%= form.submit 'Добавить', class: 'btn btn-primary' %>
     </p>
   <% end %>
 <% end %>
