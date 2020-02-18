@@ -16,11 +16,17 @@
 <%= link_to 'Назад', divisions_path %>
 
   <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    Добавить изображение
+    <%= form.file_field :icon %>
   </p>
 
   <p>
     <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
   </p>
+
 <% end %>

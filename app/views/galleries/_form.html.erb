@@ -1,0 +1,18 @@
+<h2>Add a gellery:</h2>
+<%= form_with(model: [ @division, @division.galleries.build ], local: true) do |form| %>
+  <p>
+    Нвзвание
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    Логотип
+    <%= form.file_field :icon %>
+  <p>
+  <p>
+    Добавить видео....
+    <%= form.file_field :video %>
+  </p>
+  <p>
+    <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+  </p>
+<% end %>

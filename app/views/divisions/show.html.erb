@@ -2,69 +2,15 @@
   <%= link_to 'Редактировать', edit_division_path(@division) %> |
   <%= link_to 'Назад', divisions_path %>
 
-  <div class="row justify-content-center">
-    <h2><%= @division.name %></h2>
-  </div>
+<div class="row justify-content-center">
+  <h2><%= @division.title %></h2>
 </div>
 
-<% @Images = @division.galleries.select {|gallery| gallery[:image] != nil} %>
-
-<div class="container">
-  <div class="row">
-    <% @Images.each do |gallery| %>
-      <div class="col">
-        <%= link_to image_tag(gallery.image_url(:thumb).to_s), gallery.image_url.to_s,
-            data: { fslightbox: "gallery1" } %>
-      </div>
-    <% end %>
-  </div>
-
-<% @Videos = @division.galleries.select {|gallery| gallery[:video] != nil} %>
-
-  <div class="row">
-    <% @Videos.each do |gallery| %>
-      <div class="col-6">
-        <%= link_to video_tag(gallery.video_url.to_s, controls: true, width: "550px"), gallery.video_url.to_s,
-         data: { fslightbox: "gallery2" } %>
-      </div>
-    <% end %>
-  </div>
-
-  <% @PDFs = @division.galleries.select {|gallery| gallery[:pdf] != nil} %>
-
-  <div class="row">
-    <% @PDFs.each do |gallery| %>
-      <div class="col">
-        <p>
-          <%= link_to tag.iframe(src: "#{gallery.pdf}", width: "250px", hight: "250px"), gallery.pdf.to_s,
-          data: {lity: ""} %>
-        </p>
-
-      </div>
-    <% end %>
-  </div>
+<div class='row'>
+  <%= render @division.galleries %>
+</div>
 
 <% if current_user.admin? %>
-  <h2>Add a gellery:</h2>
-  <%= form_with(model: [ @division, @division.galleries.build ], local: true) do |form| %>
-    <p>
-      Дабовить фотографию....
-      <%= form.file_field :image %>
-    </p>
-
-    <p>
-      Добавить видео....
-      <%= form.file_field :video %>
-    </p>
-
-    <p>
-      Добавить pdf файл....
-      <%= form.file_field :pdf %>
-    </p>
-
-    <p>
-      <%= form.submit 'Добавить', class: 'btn btn-primary' %>
-    </p>
-  <% end %>
+  <%= render 'galleries/form' %>
 <% end %>
 </div>

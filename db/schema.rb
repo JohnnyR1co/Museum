@@ -16,19 +16,20 @@ ActiveRecord::Schema.define(version: 2020_02_06_002645) do
   enable_extension "plpgsql"
 
   create_table "divisions", force: :cascade do |t|
-    t.string "name"
-    t.string "logo"
+    t.string "title"
+    t.string "icon"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "galleries", force: :cascade do |t|
-    t.string "image"
+    t.string "title"
+    t.string "icon"
+    t.json "images"
+    t.json "videos"
     t.bigint "division_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "video"
-    t.string "pdf"
     t.index ["division_id"], name: "index_galleries_on_division_id"
   end
 
