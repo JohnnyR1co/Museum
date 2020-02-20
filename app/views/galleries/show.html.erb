@@ -1,1 +1,59 @@
-<%= @gallery.title %>
+<%= link_to 'Назад', division_path(@gallery.division_id) %>
+
+<div class='row justify-content-center'>
+  <h2><%= @gallery.title %></h2>
+</div>
+
+<div class ='row'>
+  <% @gallery.images.each_with_index do |image, index| %>
+    <div class='col text-center'>
+      <%= link_to image_tag(image.url(:thumb).to_s, class: 'rounded mx-auto d-block' ), image.url.to_s,
+          data: { fslightbox: 'gallery1'}%></br>
+      <% if current_user.admin? %>
+        <%= link_to 'Удалить', gallery_image_path(@gallery, index),
+        method: :delete,
+        data: { confirm: 'Вы уверены?' } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class ='row'>
+  <% @gallery.videos.each_with_index do |video, index| %>
+    <div class='col text-center'>
+      <%= link_to video_tag(video.url.to_s, controls: true, width: '500px'), video.url.to_s,
+          data: { fslightbox: 'gallery2'}%></br>
+      <% if current_user.admin? %>
+        <%= link_to 'Удалить', gallery_video_path(@gallery, index),
+        method: :delete,
+        data: { confirm: 'Вы уверены?' } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% if current_user.admin? %>
+  <%= form_for @gallery, url: gallery_images_path(@gallery), method: :post do |form| %>
+    <p>
+      Добавить изображения
+    </p>
+    <p>
+      <%= form.file_field :images, multiple: true %>
+    </p>
+    <p>
+      <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+    </p>
+  <% end %>
+
+  <%= form_for @gallery, url: gallery_videos_path(@gallery), method: :post do |form| %>
+    <p>
+      Добавить видео
+    </p>
+    <p>
+      <%= form.file_field :videos, multiple: true %>
+    </p>
+    <p>
+      <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+    </p>
+  <% end %>
+<% end %>

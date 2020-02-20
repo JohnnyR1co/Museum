@@ -20,7 +20,7 @@ class DivisionsController < ApplicationController
     @division = Division.new(division_params)
 
     if @division.save
-      redirect_to @division
+      redirect_to divisions_path
     else
       render 'new'
     end

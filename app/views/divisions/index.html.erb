@@ -2,8 +2,9 @@
 
   <div class='row'>
     <% @divisions.each do |division| %>
-    <div class="col">
-      <%= link_to image_tag(division.icon.url(:thumb).to_s), division_path(division) %><br>
+    <div class="col text-center">
+      <%= link_to image_tag(division.icon.url(:thumb).to_s,
+                  class: 'rounded mx-auto d-block'), division_path(division) %></br>
       <%= division.title %><br>
       <% if current_user.admin? %>
         <%= link_to 'Редактировать', edit_division_path(division) %> |
