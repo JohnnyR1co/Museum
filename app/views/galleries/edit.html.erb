@@ -1,4 +1,6 @@
-<h1>Edit gallery</h1>
+<%= link_to 'Назад', division_path(@gallery.division_id) %>
+
+<h1>Редактировать</h1>
 
 <%= form_with(model: @gallery, local: true) do |form| %>
   <% if @gallery.errors.any? %>
@@ -14,16 +16,16 @@
       </ul>
     </div>
   <% end %>
+
   <p>
-    <%= form.label :title %><br>
+    <%= form.label :title, 'Наименование' %><br>
     <%= form.text_field :title %>
   </p>
   <p>
-    <%= form.label :icon %><br>
+    <%= form.label :icon, 'Изображение' %><br>
     <%= form.file_field :icon %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
   </p>
 <% end %>
-<%= link_to 'Back', gallery_path %>

@@ -31,7 +31,7 @@
           </ul>
         </nav>
 
-        <div class="container">
+        <div class="container-fluid">
 
           <%= yield %>
 
@@ -40,13 +40,15 @@
     <%= javascript_pack_tag 'fslightbox' %>
 
       </div>
-    <footer>
-        <div class="text-center">
-          <% unless current_page?(root_path) %>
-            <%= link_to 'Вернуться на главную', root_path, class: 'btn btn-primary' %>
-          <% end %>
-        </div>
-    </footer>
+      <div class="container">
+        <footer class="row align-items-center text-center foo">
+          <div class="col">
+            <% unless current_page?(root_path) %>
+              <%= link_to 'Вернуться на главную', root_path, class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </footer>
+        </div
     </div>
   </body>
 </html>

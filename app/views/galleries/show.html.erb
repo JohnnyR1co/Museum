@@ -4,32 +4,36 @@
   <h2><%= @gallery.title %></h2>
 </div>
 
-<div class ='row'>
-  <% @gallery.images.each_with_index do |image, index| %>
-    <div class='col text-center'>
-      <%= link_to image_tag(image.url(:thumb).to_s, class: 'rounded mx-auto d-block' ), image.url.to_s,
-          data: { fslightbox: 'gallery1'}%></br>
-      <% if current_user.admin? %>
-        <%= link_to 'Удалить', gallery_image_path(@gallery, index),
-        method: :delete,
-        data: { confirm: 'Вы уверены?' } %>
-      <% end %>
-    </div>
-  <% end %>
+<div class='container'>
+  <div class ='row'>
+    <% @gallery.images.each_with_index do |image, index| %>
+      <div class='col-3 text-center align-self-start'>
+        <%= link_to image_tag(image.url(:thumb).to_s, class: 'rounded mx-auto d-block' ), image.url.to_s,
+            data: { fslightbox: 'gallery'}%>
+        <% if current_user.admin? %>
+          <%= link_to 'Удалить', gallery_image_path(@gallery, index),
+          method: :delete,
+          data: { confirm: 'Вы уверены?' } %>
+        <% end %></br>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<div class ='row'>
-  <% @gallery.videos.each_with_index do |video, index| %>
-    <div class='col text-center'>
-      <%= link_to video_tag(video.url.to_s, controls: true, width: '500px'), video.url.to_s,
-          data: { fslightbox: 'gallery2'}%></br>
-      <% if current_user.admin? %>
-        <%= link_to 'Удалить', gallery_video_path(@gallery, index),
-        method: :delete,
-        data: { confirm: 'Вы уверены?' } %>
-      <% end %>
-    </div>
-  <% end %>
+<div class='container'>
+  <div class ='row'>
+    <% @gallery.videos.each_with_index do |video, index| %>
+      <div class='col text-center'>
+        <%= link_to video_tag(video.url.to_s, controls: true, width: '535px'), video.url.to_s,
+            data: { fslightbox: 'gallery2'}%></br>
+        <% if current_user.admin? %>
+          <%= link_to 'Удалить', gallery_video_path(@gallery, index),
+          method: :delete,
+          data: { confirm: 'Вы уверены?' } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <% if current_user.admin? %>
