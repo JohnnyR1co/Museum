@@ -25,7 +25,7 @@
     <% @gallery.videos.each_with_index do |video, index| %>
       <div class='col text-center'>
         <%= link_to video_tag(video.url.to_s, controls: true, width: '535px'), video.url.to_s,
-            data: { fslightbox: 'gallery2'}%></br>
+            data: { lity: ''}%></br>
         <% if current_user.admin? %>
           <%= link_to 'Удалить', gallery_video_path(@gallery, index),
           method: :delete,
