@@ -17,7 +17,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
 
     if @gallery.update(gallery_params)
-    redirect_to @gallery
+      redirect_to @gallery
     else
       render 'edit'
     end
@@ -32,6 +32,6 @@ class GalleriesController < ApplicationController
 
   private
     def gallery_params
-      params.require(:gallery).permit(:title, :icon, {images: []}, {video: []} )
+      params.require(:gallery).permit(:title, :icon, {images: []})
     end
 end

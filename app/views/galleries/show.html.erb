@@ -12,8 +12,8 @@
             data: { fancybox: 'gallery'}%>
         <% if current_user.admin? %>
           <%= link_to 'Удалить', gallery_image_path(@gallery, index),
-          method: :delete,
-          data: { confirm: 'Вы уверены?' } %>
+                      method: :delete,
+                      data: { confirm: 'Вы уверены?' } %>
         <% end %></br>
       </div>
     <% end %>
@@ -21,16 +21,17 @@
 </div>
 
 <div class='container'>
-  <div class ='row'>
-    <% @gallery.videos.each_with_index do |video, index| %>
-      <div class='col text-center'>
-        <%= link_to video_tag(video.url.to_s, controls: true, width: '535px'), video.url.to_s,
-            data: { fancybox: ''}%></br>
+  <div class='row'>
+    <% @gallery.movies.each do |movie| %>
+    <div class='col-3 text-center align-self-start'>
+        <%= link_to image_tag(movie.icon.url(:thumb).to_s, class: 'images'), movie.video_file.to_s,
+        data: { fancybox: ''}%>
+        <%= movie.title %></br>
         <% if current_user.admin? %>
-          <%= link_to 'Удалить', gallery_video_path(@gallery, index),
-          method: :delete,
-          data: { confirm: 'Вы уверены?' } %>
-        <% end %>
+          <%= link_to 'Удалить', [movie.gallery, movie],
+                      method: :delete,
+                      data: { confirm: 'Вы уверены?' } %>
+        <% end %></br>
       </div>
     <% end %>
   </div>
@@ -48,13 +49,24 @@
       <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
     </p>
   <% end %>
+<% end %>
 
-  <%= form_for @gallery, url: gallery_videos_path(@gallery), method: :post do |form| %>
+<% if current_user.admin? %>
+  <%= form_with(model: [ @gallery, @gallery.movies.build ], local: true) do |form| %>
     <p>
       Добавить видео
     </p>
     <p>
-      <%= form.file_field :videos, multiple: true %>
+      <%= form.label "Заголовок" %><br>
+      <%= form.text_field :title %>
+    </p>
+    <p>
+      <%= form.label "Видео файл" %><br>
+      <%= form.file_field :video_file %>
+    </p>
+    <p>
+      <%= form.label "Заставка" %><br>
+      <%= form.file_field :icon %>
     </p>
     <p>
       <%= form.submit 'Сохранить', class: 'btn btn-primary' %>

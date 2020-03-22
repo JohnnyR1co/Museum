@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   end
   resources :galleries do
     resources :images, only: [:create, :destroy]
-    resources :videos, only: [:create, :destroy]
+    resources :movies
   end
 end

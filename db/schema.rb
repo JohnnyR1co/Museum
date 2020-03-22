@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_002645) do
+ActiveRecord::Schema.define(version: 2020_03_22_043432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,20 @@ ActiveRecord::Schema.define(version: 2020_02_06_002645) do
     t.string "title"
     t.string "icon"
     t.json "images"
-    t.json "videos"
     t.bigint "division_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["division_id"], name: "index_galleries_on_division_id"
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.string "video_file"
+    t.string "icon"
+    t.bigint "gallery_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gallery_id"], name: "index_movies_on_gallery_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,4 +56,5 @@ ActiveRecord::Schema.define(version: 2020_02_06_002645) do
   end
 
   add_foreign_key "galleries", "divisions"
+  add_foreign_key "movies", "galleries"
 end

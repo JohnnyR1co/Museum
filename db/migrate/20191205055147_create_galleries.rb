@@ -4,7 +4,6 @@ class CreateGalleries < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :icon
       t.json :images
-      t.json :videos
       t.references :division, null: false, foreign_key: true
 
       t.timestamps
