@@ -2948,11 +2948,6 @@ fsevents@^1.2.7:
     nan "^2.12.1"
     node-pre-gyp "^0.12.0"
 
-fslightbox@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/fslightbox/-/fslightbox-3.1.0.tgz#e177272f40a2c60b876c09eefc8d8d48af20cea1"
-  integrity sha512-nqtuEhfzIbcxz59yLe4y/mwSX8V85GxSkV5iugrsUCNy6Pxqmg44whUT6SpOWo8iVS5gJSSk6/kNopV2W2ZXvw==
-
 fstream@^1.0.0, fstream@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/fstream/-/fstream-1.0.12.tgz#4e8ba8ee2d48be4f7d0de505455548eae5932045"
