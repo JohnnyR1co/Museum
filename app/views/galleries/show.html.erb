@@ -9,7 +9,7 @@
     <% @gallery.images.each_with_index do |image, index| %>
       <div class='col-3 text-center align-self-start'>
         <%= link_to image_tag(image.url(:thumb).to_s, class: 'rounded mx-auto d-block' ), image.url.to_s,
-            data: { fancybox: 'gallery'}%>
+            data: { fslightbox: 'gallery'}%>
         <% if current_user.admin? %>
           <%= link_to 'Удалить', gallery_image_path(@gallery, index),
                       method: :delete,
@@ -25,7 +25,7 @@
     <% @gallery.movies.each do |movie| %>
     <div class='col-3 text-center align-self-start'>
         <%= link_to image_tag(movie.icon.url(:thumb).to_s, class: 'images'), movie.video_file.to_s,
-        data: { fancybox: ''}%>
+        data: { fslightbox: ''}%>
         <%= movie.title %></br>
         <% if current_user.admin? %>
           <%= link_to 'Удалить', [movie.gallery, movie],
