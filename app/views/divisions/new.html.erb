@@ -1,3 +1,4 @@
+<div class='container-fluid'>
 <%= form_with scope: :division, url: divisions_path, local: true do |form| %>
   <% if @division.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +17,7 @@
 <%= link_to 'Назад', divisions_path %>
 
   <p>
-    <%= form.label :title %><br>
+    <%= form.label 'Заголовок' %><br>
     <%= form.text_field :title %>
   </p>
 
@@ -30,3 +31,4 @@
   </p>
 
 <% end %>
+</div>

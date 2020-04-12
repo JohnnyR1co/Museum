@@ -1,3 +1,5 @@
+<div class='container-fluid'>
+
 <%= link_to 'Назад', division_path(@gallery.division_id) %>
 
 <div class='row justify-content-center'>
@@ -22,18 +24,7 @@
 
 <div class='container'>
   <div class='row'>
-    <% @gallery.movies.each do |movie| %>
-    <div class='col-3 text-center align-self-start'>
-        <%= link_to image_tag(movie.icon.url(:thumb).to_s, class: 'images'), movie.video_file.to_s,
-        data: { fslightbox: ''}%>
-        <%= movie.title %></br>
-        <% if current_user.admin? %>
-          <%= link_to 'Удалить', [movie.gallery, movie],
-                      method: :delete,
-                      data: { confirm: 'Вы уверены?' } %>
-        <% end %></br>
-      </div>
-    <% end %>
+    <%= render @gallery.movies.order(:title) %>
   </div>
 </div>
 
@@ -49,23 +40,21 @@
       <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
     </p>
   <% end %>
-<% end %>
 
-<% if current_user.admin? %>
   <%= form_with(model: [ @gallery, @gallery.movies.build ], local: true) do |form| %>
     <p>
       Добавить видео
     </p>
     <p>
-      <%= form.label "Заголовок" %><br>
+      <%= form.label 'Заголовок' %><br>
       <%= form.text_field :title %>
     </p>
     <p>
-      <%= form.label "Видео файл" %><br>
+      <%= form.label 'Видео файл' %><br>
       <%= form.file_field :video_file %>
     </p>
     <p>
-      <%= form.label "Заставка" %><br>
+      <%= form.label 'Заставка' %><br>
       <%= form.file_field :icon %>
     </p>
     <p>
@@ -73,3 +62,4 @@
     </p>
   <% end %>
 <% end %>
+</div>

@@ -22,6 +22,12 @@ body {
 
 .text1 {
   font-size: 42px;
+  color: #fff;
+  text-shadow: #000 0 2px;
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
 }
 
 .foo {
@@ -31,4 +37,13 @@ body {
 .images {
   width: 250px;
   height: 250px;
+}
+
+.wallpaper {
+  background-image: url(wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding-top: 40px;
+  width: 100vw;
+  height: 100vh;
 }

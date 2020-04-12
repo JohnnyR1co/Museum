@@ -17,7 +17,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
 
     if @gallery.update(gallery_params)
-      redirect_to @gallery
+      redirect_to division_path(@gallery.division_id)
     else
       render 'edit'
     end

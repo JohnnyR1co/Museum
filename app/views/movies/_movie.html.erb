@@ -1,0 +1,11 @@
+<div class='col-3 text-center align-self-start'>
+    <%= link_to image_tag(movie.icon.url(:thumb).to_s, class: 'images'), movie.video_file.to_s,
+    data: { fslightbox: "#{movie.id}"}%>
+    <%= movie.title %></br>
+    <% if current_user.admin? %>
+      <%= link_to 'Редактировать', edit_movie_path(movie) %> |
+      <%= link_to 'Удалить', [movie.gallery, movie],
+                  method: :delete,
+                  data: { confirm: 'Вы уверены?' } %>
+    <% end %></br>
+  </div>
