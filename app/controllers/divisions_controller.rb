@@ -1,7 +1,7 @@
 class DivisionsController < ApplicationController
     before_action :authenticate_user!
   def index
-    @divisions = Division.all
+    @divisions = Division.all.order(:title)
   end
 
   def show
@@ -30,7 +30,7 @@ class DivisionsController < ApplicationController
     @division = Division.find(params[:id])
 
     if @division.update(division_params)
-    redirect_to @division
+    redirect_to divisions_path
     else
       render 'edit'
     end
