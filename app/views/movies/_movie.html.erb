@@ -1,6 +1,6 @@
 <div class='col-3 text-center align-self-start'>
     <%= link_to image_tag(movie.icon.url(:thumb).to_s, class: 'images'), movie.video_file.to_s,
-    data: { fslightbox: "#{movie.id}"}%>
+    data: { fslightbox: "#{movie.id}"}%></br>
     <%= movie.title %></br>
     <% if current_user.admin? %>
       <%= link_to 'Редактировать', edit_movie_path(movie) %> |
