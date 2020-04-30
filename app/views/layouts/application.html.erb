@@ -13,49 +13,37 @@
 
   <body>
     <div class='wrapper'>
-      <div class='content'>
-        <!-- Навигация -->
-        <% unless current_page?(root_path) %>
-          <nav class="navbar navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </nav>
 
-          <div class="collapse" id="navbarToggleExternalContent">
-            <ul class='navbar-nav'>
-              <% if user_signed_in? %>
-              <li class='nav-item'>
-                <%= link_to('Выйти', destroy_user_session_path, method: :delete, class: 'nav-link') %>
-              </li>
-              <% else %>
-              <li class='nav-item'>
-                <%= link_to('Войти', new_user_session_path, class: 'nav-link')  %>
-              </li>
-              <li class='nav-item'>
-                <%= link_to('Регистрация', new_user_registration_path, class: 'nav-link')  %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-
-        <% unless current_page?(root_path) %><div class='container-fluid'><%end%>
-          <%= yield %>
-        </div>
-
-      </div>
-
+      <!-- Навигация -->
       <% unless current_page?(root_path) %>
-      <div class='container'>
-        <footer class='row align-items-center text-center foo'>
-          <div class='col'>
-            <%= link_to 'Вернуться на главную', root_path, class: 'btn btn-primary' %>
-          </div>
-        </footer>
-      </div
+        <nav class="navbar navbar-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </nav>
+
+        <div class="collapse" id="navbarToggleExternalContent">
+          <ul class='navbar-nav'>
+            <% if user_signed_in? %>
+            <li class='nav-item'>
+              <%= link_to('Выйти', destroy_user_session_path, method: :delete, class: 'nav-link') %>
+            </li>
+            <% else %>
+            <li class='nav-item'>
+              <%= link_to('Войти', new_user_session_path, class: 'nav-link')  %>
+            </li>
+            <li class='nav-item'>
+              <%= link_to('Регистрация', new_user_registration_path, class: 'nav-link')  %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
+
+
+        <%= yield %>
+      
+
     </div>
 
     <%= javascript_pack_tag 'fslightbox'%>

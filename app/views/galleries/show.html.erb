@@ -1,8 +1,7 @@
-<%= link_to 'Назад', division_path(@gallery.division_id) %>
-
-<div class='row justify-content-center'>
-  <h2><%= @gallery.title %></h2>
-</div>
+<div class='content'>
+  <div class='row justify-content-center'>
+    <h2><%= @gallery.title %></h2>
+  </div>
 
   <div class ='row'>
     <% @gallery.images.each_with_index do |image, index| %>
@@ -11,8 +10,8 @@
             data: { fslightbox: 'gallery'}%>
         <% if current_user.admin? %>
           <%= link_to 'Удалить', gallery_image_path(@gallery, index),
-                      method: :delete,
-                      data: { confirm: 'Вы уверены?' } %>
+                    method: :delete,
+                    data: { confirm: 'Вы уверены?' } %>
         <% end %></br>
       </div>
     <% end %>
@@ -22,37 +21,44 @@
     <%= render @gallery.movies.order(:title) %>
   </div>
 
-<% if current_user.admin? %>
-  <%= form_for @gallery, url: gallery_images_path(@gallery), method: :post do |form| %>
-    <p>
-      Добавить изображения
-    </p>
-    <p>
-      <%= form.file_field :images, multiple: true %>
-    </p>
-    <p>
-      <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
-    </p>
-  <% end %>
+  <% if current_user.admin? %>
+    <%= form_for @gallery, url: gallery_images_path(@gallery), method: :post do |form| %>
+      <p>
+        Добавить изображения
+      </p>
+      <p>
+        <%= form.file_field :images, multiple: true %>
+      </p>
+      <p>
+        <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+      </p>
+    <% end %>
 
-  <%= form_with(model: [ @gallery, @gallery.movies.build ], local: true) do |form| %>
-    <p>
-      Добавить видео
-    </p>
-    <p>
-      <%= form.label 'Заголовок' %><br>
-      <%= form.text_field :title %>
-    </p>
-    <p>
-      <%= form.label 'Видео файл' %><br>
-      <%= form.file_field :video_file %>
-    </p>
-    <p>
-      <%= form.label 'Заставка' %><br>
-      <%= form.file_field :icon %>
-    </p>
-    <p>
-      <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
-    </p>
+    <%= form_with(model: [ @gallery, @gallery.movies.build ], local: true) do |form| %>
+      <p>
+        Добавить видео
+      </p>
+      <p>
+        <%= form.label 'Заголовок' %><br>
+        <%= form.text_field :title %>
+      </p>
+      <p>
+        <%= form.label 'Видео файл' %><br>
+        <%= form.file_field :video_file %>
+      </p>
+      <p>
+        <%= form.label 'Заставка' %><br>
+        <%= form.file_field :icon %>
+      </p>
+      <p>
+        <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+      </p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
+<footer class='row align-items-center text-center foo'>
+  <div class='col'>
+    <%= link_to 'Назад', division_path(@gallery.division_id), class: 'btn btn-primary' %>
+  </div>
+</footer>
