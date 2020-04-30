@@ -1,33 +1,35 @@
 <div class='content'>
-  <h1>Редактировать</h1>
+  <div class='container-fluid'>
+    <h1>Редактировать</h1>
 
-  <%= form_with(model: @gallery, local: true) do |form| %>
-    <% if @gallery.errors.any? %>
-      <div id="error_explanation">
-        <h2>
-          <%= pluralize(@gallery.errors.count, "error") %> prohibited
-          this gallery from being saved:
-        </h2>
-        <ul>
-          <% @gallery.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
+    <%= form_with(model: @gallery, local: true) do |form| %>
+      <% if @gallery.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@gallery.errors.count, "error") %> prohibited
+            this gallery from being saved:
+          </h2>
+          <ul>
+            <% @gallery.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <p>
+        <%= form.label :title, 'Наименование' %><br>
+        <%= form.text_field :title %>
+      </p>
+      <p>
+        <%= form.label :icon, 'Изображение' %><br>
+        <%= form.file_field :icon %>
+      </p>
+      <p>
+        <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+      </p>
     <% end %>
-
-    <p>
-      <%= form.label :title, 'Наименование' %><br>
-      <%= form.text_field :title %>
-    </p>
-    <p>
-      <%= form.label :icon, 'Изображение' %><br>
-      <%= form.file_field :icon %>
-    </p>
-    <p>
-      <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
-    </p>
-  <% end %>
+  </div>
 </div>
 
 <footer class='row align-items-center text-center foo'>

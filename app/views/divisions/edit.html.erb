@@ -1,34 +1,34 @@
 <div class='content'>
+  <div class='container-fluid'>
+    <h1>Редактировать</h1>
 
-  <h1>Редактировать</h1>
-
-  <%= form_with(model: @division, local: true) do |form| %>
-    <% if @division.errors.any? %>
-      <div id='error_explanation'>
-        <h2>
-          <%= pluralize(@division.errors.count, "error") %> prohibited
-          this division from being saved:
-        </h2>
-        <ul>
-          <% @division.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
+    <%= form_with(model: @division, local: true) do |form| %>
+      <% if @division.errors.any? %>
+        <div id='error_explanation'>
+          <h2>
+            <%= pluralize(@division.errors.count, "error") %> prohibited
+            this division from being saved:
+          </h2>
+          <ul>
+            <% @division.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <p>
+        <%= form.label :title, 'Наименование' %><br>
+        <%= form.text_field :title %>
+      </p>
+      <p>
+        <%= form.label :icon, 'Изображение' %><br>
+        <%= form.file_field :icon %>
+      </p>
+      <p>
+        <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+      </p>
     <% end %>
-    <p>
-      <%= form.label :title, 'Наименование' %><br>
-      <%= form.text_field :title %>
-    </p>
-    <p>
-      <%= form.label :icon, 'Изображение' %><br>
-      <%= form.file_field :icon %>
-    </p>
-    <p>
-      <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
-    </p>
-  <% end %>
-
+  </div>
 </div>
 
 <footer class='row align-items-center text-center foo'>

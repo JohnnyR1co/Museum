@@ -1,21 +1,21 @@
 <div class='container-fluid'>
-<div class='row'>
-  <% @divisions.each do |division| %>
-  <div class="col-2 text-center align-self-start">
-    <%= link_to image_tag(division.icon.url(:thumb).to_s,
-                class: 'rounded mx-auto d-block images'), division_path(division) %>
-    <%= division.title %><br>
-    <% if current_user.admin? %>
-      <%= link_to 'Редактировать', edit_division_path(division) %> |
-      <%= link_to 'Удалить', division_path(division),
-                  method: :delete,
-                  data: { confirm: 'Вы уверены?' } %>
-      <% end %></br>
+  <div class='row'>
+    <% @divisions.each do |division| %>
+    <div class="col-2 text-center align-self-start">
+      <%= link_to image_tag(division.icon.url(:thumb).to_s,
+                  class: 'rounded mx-auto d-block images'), division_path(division) %>
+      <%= division.title %><br>
+      <% if current_user.admin? %>
+        <%= link_to 'Редактировать', edit_division_path(division) %> |
+        <%= link_to 'Удалить', division_path(division),
+                    method: :delete,
+                    data: { confirm: 'Вы уверены?' } %>
+        <% end %></br>
+    </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
 
-<% if current_user.admin? %>
-  <%= link_to 'Создать', new_division_path, class: 'btn btn-primary' %>
-<% end %>
+  <% if current_user.admin? %>
+    <%= link_to 'Создать', new_division_path, class: 'btn btn-primary' %>
+  <% end %>
 </div>
