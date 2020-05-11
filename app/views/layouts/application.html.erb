@@ -8,7 +8,6 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
   </head>
 
   <body>
@@ -16,7 +15,6 @@
 
       <!-- Навигация -->
       <% unless current_page?(root_path) %>
-
         <nav class="navbar navbar-light">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -44,8 +42,7 @@
         </div>
       <% end %>
 
-        <%= yield %>
-
+      <%= yield %>
 
     </div>
 

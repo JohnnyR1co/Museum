@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_043432) do
+ActiveRecord::Schema.define(version: 2020_04_30_064435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2020_03_22_043432) do
     t.index ["gallery_id"], name: "index_movies_on_gallery_id"
   end
 
+  create_table "pdfs", force: :cascade do |t|
+    t.string "title"
+    t.string "pdf_file"
+    t.string "icon"
+    t.bigint "gallery_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gallery_id"], name: "index_pdfs_on_gallery_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,4 +67,5 @@ ActiveRecord::Schema.define(version: 2020_03_22_043432) do
 
   add_foreign_key "galleries", "divisions"
   add_foreign_key "movies", "galleries"
+  add_foreign_key "pdfs", "galleries"
 end

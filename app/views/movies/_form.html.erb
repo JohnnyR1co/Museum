@@ -1,0 +1,20 @@
+<p>
+  Добавить видео
+</p>
+<%= form_with(model: [ @gallery, @gallery.movies.build ], local: true) do |form| %>
+  <p>
+    <%= form.label 'Заголовок' %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label 'Видео файл' %><br>
+    <%= form.file_field :video_file %>
+  </p>
+  <p>
+    <%= form.label 'Заставка' %><br>
+    <%= form.file_field :icon %>
+  </p>
+  <p>
+    <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+  </p>
+<% end %>

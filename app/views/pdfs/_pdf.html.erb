@@ -1,0 +1,11 @@
+<div class='col-3 text-center align-self-start'>
+    <%= link_to image_tag(pdf.icon.url(:thumb).to_s, class: 'images'), pdf.pdf_file.to_s,
+    data: { fslightbox: "#{pdf.id}"}%></br>
+    <%= pdf.title %></br>
+    <% if current_user.admin? %>
+      <%= link_to 'Редактировать', edit_pdf_path(pdf) %> |
+      <%= link_to 'Удалить', [pdf.gallery, pdf],
+                  method: :delete,
+                  data: { confirm: 'Вы уверены?' } %>
+    <% end %></br>
+  </div>

@@ -21,6 +21,10 @@
     <%= render @gallery.movies.order(:title) %>
   </div>
 
+  <div class='row'>
+    <%= render @gallery.pdfs.order(:title) %>
+  </div>
+
   <% if current_user.admin? %>
     <%= form_for @gallery, url: gallery_images_path(@gallery), method: :post do |form| %>
       <p>
@@ -34,26 +38,9 @@
       </p>
     <% end %>
 
-    <%= form_with(model: [ @gallery, @gallery.movies.build ], local: true) do |form| %>
-      <p>
-        Добавить видео
-      </p>
-      <p>
-        <%= form.label 'Заголовок' %><br>
-        <%= form.text_field :title %>
-      </p>
-      <p>
-        <%= form.label 'Видео файл' %><br>
-        <%= form.file_field :video_file %>
-      </p>
-      <p>
-        <%= form.label 'Заставка' %><br>
-        <%= form.file_field :icon %>
-      </p>
-      <p>
-        <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
-      </p>
-    <% end %>
+    <%= render 'movies/form' %>
+
+    <%= render 'pdfs/form' %>
   <% end %>
 </div>
 
