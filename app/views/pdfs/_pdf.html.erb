@@ -1,6 +1,6 @@
 <div class='col-3 text-center align-self-start'>
-    <%= link_to image_tag(pdf.icon.url(:thumb).to_s, class: 'images'), pdf.pdf_file.to_s,
-    data: { fslightbox: "#{pdf.id}"}%></br>
+    <%= link_to image_tag(pdf.icon.url(:thumb).to_s, class: 'images'), "#{'#'+pdf.id.to_s}",
+    data: { lity: ""} %></br>
     <%= pdf.title %></br>
     <% if current_user.admin? %>
       <%= link_to 'Редактировать', edit_pdf_path(pdf) %> |
@@ -8,4 +8,11 @@
                   method: :delete,
                   data: { confirm: 'Вы уверены?' } %>
     <% end %></br>
-  </div>
+</div>
+
+<div id= <%= "#{pdf.id.to_s}" %> style="background:#fff" class="lity-hide">
+  <iframe src= <%="#{pdf.pdf_file.to_s}" %>
+          width="1024"
+          height="756">
+  </iframe>
+</div>

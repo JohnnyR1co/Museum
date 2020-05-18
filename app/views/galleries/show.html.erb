@@ -7,7 +7,7 @@
     <% @gallery.images.each_with_index do |image, index| %>
       <div class='col-3 text-center align-self-start'>
         <%= link_to image_tag(image.url(:thumb).to_s, class: 'rounded mx-auto d-block' ), image.url.to_s,
-            data: { fslightbox: 'gallery'}%>
+            data: {fslightbox: 'gallery'} %>
         <% if current_user.admin? %>
           <%= link_to 'Удалить', gallery_image_path(@gallery, index),
                     method: :delete,
@@ -25,23 +25,25 @@
     <%= render @gallery.pdfs.order(:title) %>
   </div>
 
-  <% if current_user.admin? %>
-    <%= form_for @gallery, url: gallery_images_path(@gallery), method: :post do |form| %>
-      <p>
-        Добавить изображения
-      </p>
-      <p>
-        <%= form.file_field :images, multiple: true %>
-      </p>
-      <p>
-        <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
-      </p>
+  <div class="container-fluid">
+    <% if current_user.admin? %>
+      <%= form_for @gallery, url: gallery_images_path(@gallery), method: :post do |form| %>
+        <p>
+          Добавить изображения
+        </p>
+        <p>
+          <%= form.file_field :images, multiple: true %>
+        </p>
+        <p>
+          <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+        </p>
+      <% end %>
+
+      <%= render 'movies/form' %>
+
+      <%= render 'pdfs/form' %>
     <% end %>
-
-    <%= render 'movies/form' %>
-
-    <%= render 'pdfs/form' %>
-  <% end %>
+  </div>
 </div>
 
 <footer class='row align-items-center text-center foo'>

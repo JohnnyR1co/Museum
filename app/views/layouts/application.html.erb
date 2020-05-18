@@ -15,7 +15,7 @@
 
       <!-- Навигация -->
       <% unless current_page?(root_path) %>
-        <nav class="navbar navbar-light">
+        <nav class="navbar navbar-light compensate-for-scrollbar compensate-for-scrollbar">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -46,6 +46,7 @@
 
     </div>
 
-    <%= javascript_pack_tag 'fslightbox'%>
+    <%= javascript_pack_tag 'fslightbox' %>
+    
   </body>
 </html>
